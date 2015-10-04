@@ -1,0 +1,45 @@
+Mon Aug 17 12:44:28 MDT 2015
+here is your PBS_NODEFILE
+cn0789
+cn0789
+cn0789
+cn0789
+cn0789
+cn0789
+cn0789
+cn0789
+cn0789
+cn0789
+cn0789
+cn0789
+cn0798
+cn0798
+cn0798
+cn0798
+cn0798
+cn0798
+cn0798
+cn0798
+cn0798
+cn0798
+cn0798
+cn0798
+cn0805
+cn0805
+cn0805
+cn0805
+cn0805
+cn0805
+cn0805
+cn0805
+cn0805
+cn0805
+cn0805
+cn0805
+calling julia now
+name of compute nodes and number of workers:
+["cn0805"=>12,"cn0789"=>12,"cn0798"=>12]
+added 1 processes on master itself
+added 1 processes on machine cn0805
+added 1 processes on machine cn0798
+done

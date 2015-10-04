@@ -1,0 +1,22 @@
+#!/bin/bash 
+#PBS -S /bin/bash
+#PBS -l nodes=3:ppn=12 
+#PBS -l mem=66gb 
+#PBS -l walltime=2:00:00 
+#PBS -m bea 
+#PBS -M aaron.stanton@ualberta.ca
+#PBS -N 01_adj
+#PBS -o 01_adj.out
+#PBS -e 01_adj.err
+
+date
+
+# Change to directory from which job was submitted
+cd $PBS_O_WORKDIR 
+
+echo "here is your PBS_NODEFILE"
+cat $PBS_NODEFILE
+
+echo "calling julia now"
+julia 01_adj.jl
+

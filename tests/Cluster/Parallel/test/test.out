@@ -1,0 +1,68 @@
+Mon Aug 17 11:49:23 MDT 2015
+here is your PBS_NODEFILE
+cn0757
+cn0757
+cn0757
+cn0757
+cn0757
+cn0757
+cn0757
+cn0757
+cn0757
+cn0757
+cn0757
+cn0757
+cn0798
+cn0798
+cn0798
+cn0798
+cn0798
+cn0798
+cn0798
+cn0798
+cn0798
+cn0798
+cn0798
+cn0798
+cn0805
+cn0805
+cn0805
+cn0805
+cn0805
+cn0805
+cn0805
+cn0805
+cn0805
+cn0805
+cn0805
+cn0805
+calling julia now
+Started julia on Parallel.westgrid.ca
+name of compute nodes and number of workers:
+["cn0805"=>12,"cn0757"=>12,"cn0798"=>12]
+added 1 processes on master itself
+added 1 processes on machine cn0805
+added 1 processes on machine cn0798
+done
+make everybody say hello
+hi I am worker number 1, I live on cn0757
+	From worker 2:	hi I am worker number 2, I live on cn0757
+	From worker 3:	hi I am worker number 3, I live on cn0805
+	From worker 4:	hi I am worker number 4, I live on cn0798
+make everybody do some math
+	From worker 2:	Hi, I am worker number 2 doing some math
+	From worker 3:	Hi, I am worker number 3 doing some math
+	From worker 4:	Hi, I am worker number 4 doing some math
+make everybody pass a memory test
+	From worker 2:	allocating a 30000 by 10000 matrix 
+	From worker 3:	allocating a 30000 by 10000 matrix 
+	From worker 4:	allocating a 30000 by 10000 matrix 
+	From worker 3:	my matrix has 2.23 GB
+	From worker 4:	my matrix has 2.23 GB
+	From worker 2:	my matrix has 2.23 GB
+trying parallel for loop with 4 processes
+numworkers: 3
+workers: [2,3,4]
+elapsed time: 16.957320031 seconds (828984408 bytes allocated, 3.21% gc time)
+elapsed time: 6.879629952 seconds (323236 bytes allocated)
+ quitting 
