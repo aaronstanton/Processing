@@ -25,7 +25,7 @@ mps = [mps1 mps2 mps3 mps4 mps5]
 plotpar = {"ox"=>1,"dx"=>1,
 "dy"=>h[1].d1,
 "cmap"=>"PuOr",
-"vmin"=>-0.5,"vmax"=>0.5,
+"pclip"=>30,
 "fignum"=>1}
 
 fig = PyPlot.figure(1,figsize=(11,6), facecolor="w", dpi=120) # create figure

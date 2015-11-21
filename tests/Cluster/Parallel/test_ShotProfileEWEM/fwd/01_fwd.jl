@@ -1,24 +1,23 @@
 using Seismic
 
-SCRATCH_PATH = "/global/scratch/stanton/kevins_model/elastic/"
-
 # for each node, migrate 1 common shot gather using 12 threads per node. 
 param = {"adj"=>false,
-    "vp"=>join([SCRATCH_PATH,"prep/vp"]), "vs"=>join([SCRATCH_PATH,"prep/vs"]), "wav"=>join([SCRATCH_PATH,"prep/wav"]),
-    "angx"=>join([SCRATCH_PATH,"prep/angx"]),"angy"=>join([SCRATCH_PATH,"prep/angy"]),
+    "vp"=>"../prep/vp", "vs"=>"../prep/vs", "wav"=>"../prep/wav",
+    "angx"=>"../prep/angx_1shot","angy"=>"../prep/angy_1shot",
     "pade_flag"=>"n",
-    "damping"=>10000000,
+    "damping"=>1000,
     "sz"=>10, "gz"=>550,
     "fmin"=>1., "fmax"=>50.,
     "padt"=>2, "padx"=>2,
-    "nangx"=>29, "oangx"=>-70, "dangx"=>5,
+    "nangx"=>1, "oangx"=>0, "dangx"=>5,
     "nangy"=>1, "oangy"=>0, "dangy"=>2,
-    "nhx"=>1653, "ohx"=>-3304, "dhx"=>4,
-    "nhy"=>1, "ohy"=>0, "dhy"=>4,
-    "omp"=>12,"verbose"=>"y"};
+    "nhx"=>827, "ohx"=>-3304, "dhx"=>8,
+    "nhy"=>1, "ohy"=>0, "dhy"=>8,
+    "omp"=>12,"verbose"=>true};
+    #"nangx"=>29, "oangx"=>-70, "dangx"=>5,
 param["sx"] = [3600.0:100.0:3600.0];
 param["sy"] = [3600.0:100.0:3600.0]*0;
-m = [join([SCRATCH_PATH,"adj/mpp"]);join([SCRATCH_PATH,"adj/mps1"]);join([SCRATCH_PATH,"adj/mps2"])]
-d = [join([SCRATCH_PATH,"fwd/ux"]);join([SCRATCH_PATH,"fwd/uy"]);join([SCRATCH_PATH,"fwd/uz"])]
+m = ["../adj/mpp";"../adj/mps1";"../adj/mps2"];
+d = ["ux_fwd";"uy_fwd";"uz_fwd"];
 ShotProfileEWEM(m,d,param);
 

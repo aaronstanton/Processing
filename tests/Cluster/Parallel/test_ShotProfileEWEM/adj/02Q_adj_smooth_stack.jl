@@ -1,15 +1,15 @@
 using PyPlot,Seismic
 
-SeisWindow("mpp_smooth1","mpp_near",{"key"=>["ang"],"minval"=>[-40],"maxval"=>[40]})
-SeisWindow("mps2_smooth1","mps2_near",{"key"=>["ang"],"minval"=>[-40],"maxval"=>[40]})
+SeisWindow("mpp_smooth2","mpp_near",{"key"=>["ang"],"minval"=>[-45],"maxval"=>[45]})
+SeisWindow("mps2_smooth2","mps2_near",{"key"=>["ang"],"minval"=>[-45],"maxval"=>[45]})
 SeisStack("mpp_near","mpp_stack")
 SeisStack("mps2_near","mps2_stack")
 mpp,h = SeisRead("mpp_stack")
 mps,h = SeisRead("mps2_stack")
 plotpar = {"ox"=>h[1].mx,"dx"=>h[2].mx - h[1].mx,
 "dy"=>h[1].d1,
-"cmap"=>"PuOr",
-"vmin"=>-0.5,"vmax"=>0.5,
+"cmap"=>"Greys",
+"pclip"=>30,
 "fignum"=>1}
 
 fig = PyPlot.figure(1,figsize=(10,10), facecolor="w", dpi=120) # create figure

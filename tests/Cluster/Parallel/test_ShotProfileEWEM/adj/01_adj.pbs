@@ -18,5 +18,5 @@ echo "here is your PBS_NODEFILE"
 cat $PBS_NODEFILE
 
 echo "calling julia now"
-julia 01_adj.jl
+julia -p 3 --machinefile $PBS_NODEFILE 01_adj.jl
 
