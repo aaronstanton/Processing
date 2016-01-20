@@ -11,8 +11,8 @@ param = {"adj"=>true,
     "nhx"=>827, "ohx"=>-3304, "dhx"=>8,
     "nhy"=>1, "ohy"=>0, "dhy"=>8,
     "verbose"=>true}
-param["sx"] = [100.0:100.0:6900.0];
-param["sy"] = [100.0:100.0:6900.0]*0;
+param["sx"] = [100.0:100.0:500.0];
+param["sy"] = [100.0:100.0:500.0]*0;
 m = ["mpp";"mps1";"mps2"]
 d = ["../prep/ux";"../prep/uy";"../prep/uz"]
 ShotProfileEWEM(m,d,param)

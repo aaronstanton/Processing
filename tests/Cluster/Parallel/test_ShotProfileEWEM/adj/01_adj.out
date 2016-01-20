@@ -1,39 +1,11 @@
-Fri Nov 20 20:54:06 MST 2015
+Fri Nov 27 11:05:08 MST 2015
 here is your PBS_NODEFILE
-cn0683
-cn0683
-cn0683
-cn0683
-cn0683
-cn0683
-cn0683
-cn0683
-cn0683
-cn0683
-cn0683
-cn0683
-cn0735
-cn0735
-cn0735
-cn0735
-cn0735
-cn0735
-cn0735
-cn0735
-cn0735
-cn0735
-cn0735
-cn0735
-cn0738
-cn0738
-cn0738
-cn0738
-cn0738
-cn0738
-cn0738
-cn0738
-cn0738
-cn0738
-cn0738
-cn0738
+cn0766
+cn0803
+cn0860
+12
 calling julia now
+hello.
+	From worker 2:	hello.
+	From worker 4:	hello.
+	From worker 3:	hello.

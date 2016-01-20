@@ -1,3 +1,7 @@
+# the following 2 lines are for plotting non-interactively
+using PyCall
+pyimport("matplotlib")[:use]("Agg")
+
 using PyPlot,Seismic
 
 SeisWindow("mpp","mpp_near",{"key"=>["ang"],"minval"=>[-45],"maxval"=>[45]})
@@ -8,7 +12,7 @@ mpp,h = SeisRead("mpp_stack")
 mps,h = SeisRead("mps2_stack")
 plotpar = {"ox"=>h[1].mx,"dx"=>h[2].mx - h[1].mx,
 "dy"=>h[1].d1,
-"cmap"=>"PuOr",
+"cmap"=>"Greys",
 "pclip"=>30,
 "fignum"=>1}
 
