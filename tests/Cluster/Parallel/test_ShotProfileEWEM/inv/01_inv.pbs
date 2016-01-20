@@ -1,6 +1,6 @@
 #!/bin/bash 
 #PBS -S /bin/bash
-#PBS -l nodes=10:ppn=12 
+#PBS -l nodes=3:ppn=12 
 #PBS -l mem=66gb 
 #PBS -l walltime=24:00:00 
 #PBS -m bea 
@@ -18,5 +18,5 @@ echo "here is your PBS_NODEFILE"
 cat $PBS_NODEFILE
 
 echo "calling julia now"
-julia 01_inv.jl
+julia -p 3 --machinefile $PBS_NODEFILE 01_inv.jl
 

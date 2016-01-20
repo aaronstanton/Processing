@@ -1,7 +1,5 @@
 using Seismic
 
-SCRATCH_PATH = "/global/scratch/stanton/kevins_model/elastic/"
-
 # data and velocity model dimensions
 nz = 750;
 dz = 4.0;
@@ -41,10 +39,10 @@ for imy = 1:nmy
   h_v[(imx-1)*nmy + imy].imy = imy-1;
 end
 end
-SeisWriteHeaders(join([SCRATCH_PATH,"prep/vp"]),h_v)
-SeisWriteHeaders(join([SCRATCH_PATH,"prep/vs"]),h_v)
-SeisWriteHeaders(join([SCRATCH_PATH,"prep/vp_raw"]),h_v)
-SeisWriteHeaders(join([SCRATCH_PATH,"prep/vs_raw"]),h_v)
+SeisWriteHeaders("vp",h_v)
+SeisWriteHeaders("vs",h_v)
+SeisWriteHeaders("vp_raw",h_v)
+SeisWriteHeaders("vs_raw",h_v)
 
 # set up headers in data files
 h_d = Header[]
@@ -67,8 +65,8 @@ end
 end
 end
 end
-SeisWriteHeaders(join([SCRATCH_PATH,"prep/ux_raw1"]),h_d)
-SeisWriteHeaders(join([SCRATCH_PATH,"prep/uz_raw1"]),h_d)
+SeisWriteHeaders("ux_raw1",h_d)
+SeisWriteHeaders("uz_raw1",h_d)
 
 # set up headers in wavelet file
 h_w = Header[]
@@ -76,18 +74,23 @@ push!(h_w,Seismic.InitSeisHeader())
 h_w[1].tracenum = 1;
 h_w[1].n1 = nt;
 h_w[1].d1 = dt;
-SeisWriteHeaders(join([SCRATCH_PATH,"prep/wav"]),h_w)
+SeisWriteHeaders("wav",h_w)
+
+wav,h = SeisRead("wav")
+wav = 100.*wav/maximum(wav)
+SeisWrite("wav",wav,h)
+
 
 # update geometry for d and bin to isx,isy,ihx,ihy
 param = ["dsx"=> dsx, "dsy"=> dsy, "osx"=> osx, "osy"=> osy,
          "dhx"=>  dhx, "dhy"=>  dhy, "ohx"=> ohx, "ohy"=> ohy, 
          "gamma"=> 1, "ang"=> 90]
-SeisGeometry(join([SCRATCH_PATH,"prep/ux_raw1"]),param);
-SeisGeometry(join([SCRATCH_PATH,"prep/uz_raw1"]),param);
-SeisSort(join([SCRATCH_PATH,"prep/ux_raw1"]),join([SCRATCH_PATH,"prep/ux_raw2"]),{"key"=>["isx","ihx"]});
-SeisSort(join([SCRATCH_PATH,"prep/uz_raw1"]),join([SCRATCH_PATH,"prep/uz_raw2"]),{"key"=>["isx","ihx"]});
-SeisWindow(join([SCRATCH_PATH,"prep/ux_raw2"]),join([SCRATCH_PATH,"prep/ux_raw3"]),{"key"=>["isx";"hx";"gx";"gy"],"minval"=>[0;-3304.0;0.0;0.0],"maxval"=>[68;3304.0;6992.0;0.0]})
-SeisWindow(join([SCRATCH_PATH,"prep/uz_raw2"]),join([SCRATCH_PATH,"prep/uz_raw3"]),{"key"=>["isx";"hx";"gx";"gy"],"minval"=>[0;-3304.0;0.0;0.0],"maxval"=>[68;3304.0;6992.0;0.0]})
+SeisGeometry("ux_raw1",param);
+SeisGeometry("uz_raw1",param);
+SeisSort("ux_raw1","ux_raw2",{"key"=>["isx","ihx"]});
+SeisSort("uz_raw1","uz_raw2",{"key"=>["isx","ihx"]});
+SeisWindow("ux_raw2","ux_raw3",{"key"=>["isx";"hx";"gx";"gy"],"minval"=>[0;-3304.0;0.0;0.0],"maxval"=>[68;3304.0;6992.0;0.0]})
+SeisWindow("uz_raw2","uz_raw3",{"key"=>["isx";"hx";"gx";"gy"],"minval"=>[0;-3304.0;0.0;0.0],"maxval"=>[68;3304.0;6992.0;0.0]})
 
 # add binning parameters to param
 param["min_isx"] = 0
@@ -99,30 +102,30 @@ param["max_ihx"] = 826
 param["min_ihy"] = 0
 param["max_ihy"] = 0
 param["style"] = "sxsyhxhy"
-SeisBin(join([SCRATCH_PATH,"prep/ux_raw3"]),join([SCRATCH_PATH,"prep/ux_raw4"]),param)
-SeisBin(join([SCRATCH_PATH,"prep/uz_raw3"]),join([SCRATCH_PATH,"prep/uz_raw4"]),param)
-SeisWindow(join([SCRATCH_PATH,"prep/ux_raw4"]),join([SCRATCH_PATH,"prep/ux"]),{"key"=>["gx" "gy"],"minval"=>[0 0],"maxval"=>[6992.0 0]})
-SeisWindow(join([SCRATCH_PATH,"prep/uz_raw4"]),join([SCRATCH_PATH,"prep/uz"]),{"key"=>["gx" "gy"],"minval"=>[0 0],"maxval"=>[6992.0 0]})
+SeisBin("ux_raw3","ux_raw4",param)
+SeisBin("uz_raw3","uz_raw4",param)
+SeisWindow("ux_raw4","ux",{"key"=>["gx" "gy"],"minval"=>[0 0],"maxval"=>[6992.0 0]})
+SeisWindow("uz_raw4","uz",{"key"=>["gx" "gy"],"minval"=>[0 0],"maxval"=>[6992.0 0]})
 
 # make uy consisting of zeros
-ux,h = SeisRead(join([SCRATCH_PATH,"prep/ux"]));
-SeisWrite(join([SCRATCH_PATH,"prep/uy"]),ux[1:nt,:].*0,h);
+ux,h = SeisRead("ux");
+SeisWrite("uy",ux[1:nt,:].*0,h);
 
-SeisHeaderInfo(join([SCRATCH_PATH,"prep/ux"]));
-SeisHeaderInfo(join([SCRATCH_PATH,"prep/uy"]));
-SeisHeaderInfo(join([SCRATCH_PATH,"prep/uz"]));
+SeisHeaderInfo("ux");
+SeisHeaderInfo("uy");
+SeisHeaderInfo("uz");
 
 # compute reflector normals 
-vp_raw,h = SeisRead(join([SCRATCH_PATH,"prep/vp_raw"]));
+vp_raw,h = SeisRead("vp_raw");
 coh,pp,res = SeisPWD(vp_raw,["w1"=>30,"w2"=>30,"dx"=>8,"dz"=>8]);
-SeisWrite(join([SCRATCH_PATH,"prep/dipx"]),pp,h);
-SeisWrite(join([SCRATCH_PATH,"prep/dipy"]),pp*0,h);
+SeisWrite("dipx",pp,h);
+SeisWrite("dipy",pp*0,h);
 
 coh,pp_slope,res = SeisPWD(vp_raw,["w1"=>30,"w2"=>30,"dx"=>4,"dz"=>4,"format"=>"dip"]);
-SeisWrite(join([SCRATCH_PATH,"prep/dipx_slope"]),pp_slope,h);
-SeisWrite(join([SCRATCH_PATH,"prep/dipy_slope"]),pp_slope*0,h);
+SeisWrite("dipx_slope",pp_slope,h);
+SeisWrite("dipy_slope",pp_slope*0,h);
 
-SeisWindow(join([SCRATCH_PATH,"prep/ux"]),join([SCRATCH_PATH,"prep/ux_1shot"]),{"key"=>["isx"],"minval"=>[35]})
-SeisWindow(join([SCRATCH_PATH,"prep/uy"]),join([SCRATCH_PATH,"prep/uy_1shot"]),{"key"=>["isx"],"minval"=>[35]})
-SeisWindow(join([SCRATCH_PATH,"prep/uz"]),join([SCRATCH_PATH,"prep/uz_1shot"]),{"key"=>["isx"],"minval"=>[35]})
+SeisWindow("ux","ux_1shot",{"key"=>["isx"],"minval"=>[35]})
+SeisWindow("uy","uy_1shot",{"key"=>["isx"],"minval"=>[35]})
+SeisWindow("uz","uz_1shot",{"key"=>["isx"],"minval"=>[35]})
 

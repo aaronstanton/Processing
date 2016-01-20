@@ -1,12 +1,14 @@
+# the following 2 lines are for plotting non-interactively
+using PyCall
+pyimport("matplotlib")[:use]("Agg")
+
 using PyPlot,Seismic
 
-SCRATCH_PATH = "/global/scratch/stanton/kevins_model/elastic/"
-
-vp,h = SeisRead(join([SCRATCH_PATH,"prep/vp_raw"]));
-vs,h = SeisRead(join([SCRATCH_PATH,"prep/vs_raw"]));
+vp,h = SeisRead("vp_raw");
+vs,h = SeisRead("vs_raw");
 plotpar = {"ox"=>h[1].mx,"dx"=>h[2].mx - h[1].mx,
 "dy"=>h[1].d1,
-"cmap"=>"PuOr",
+"cmap"=>"Greys",
 "vmin"=>800,"vmax"=>3000,
 "fignum"=>1}
 

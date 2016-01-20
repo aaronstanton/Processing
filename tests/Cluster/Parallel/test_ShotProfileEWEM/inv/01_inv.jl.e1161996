@@ -1,0 +1,25 @@
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 2: using: command not found
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 4: param: command not found
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 5: ../prep/vp,: No such file or directory
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 6: ../prep/angx,angy=: No such file or directory
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 7: sz=: command not found
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 8: fmin=: command not found
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 9: padt=: command not found
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 10: nangx=: command not found
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 11: nangy=: command not found
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 12: nhx=: command not found
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 13: nhy=: command not found
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 14: verbose=: command not found
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 15: param[sx]: command not found
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 16: param[sy]: command not found
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 17: m0: command not found
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 17: ../adj/mps1: No such file or directory
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 17: ../adj/mps2]: No such file or directory
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 18: m: command not found
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 18: mps1: command not found
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 18: mps2]: command not found
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 19: d: command not found
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 19: ../prep/uy: No such file or directory
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 19: ../prep/uz]: No such file or directory
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 20: syntax error near unexpected token `m,m0,d,param'
+/var/local/torque/mom_priv/jobs/1161996.parallel-admin.SC: line 20: `ShotProfileLSEWEM(m,m0,d,param);'
